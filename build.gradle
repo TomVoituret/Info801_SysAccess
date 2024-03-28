@@ -1,0 +1,35 @@
+plugins {
+    id 'war'
+ }
+
+repositories {
+    // Use jcenter for resolving your dependencies.
+    // You can declare any Maven/Ivy/file repository here.
+    mavenCentral()
+}
+
+dependencies {
+    providedCompile group: 'jakarta.platform', name: 'jakarta.jakartaee-web-api', version: '10.0.0'
+    providedCompile group: 'jakarta.xml.ws', name: 'jakarta.xml.ws-api', version: '4.0.0'
+    providedRuntime group: 'org.glassfish.web', name: 'jakarta.servlet.jsp.jstl', version: '3.0.0'
+    implementation group: 'org.postgresql', name: 'postgresql', version: '42.6.0'
+}
+
+java {
+    // java version: source and bytecode 
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
+// encodage des fichIers en UTF8
+compileJava.options.encoding = 'UTF-8'
+
+// on configure le plugin eclipse s'il est actif
+pluginManager.withPlugin('eclipse'){
+    // configuration JEE pour eclipse
+    eclipse.wtp.facet { 
+        facet name: 'jst.java', version: '17'
+        facet name: 'jst.web', version: '6.0'
+        facet name: 'jpt.jpa', version: '2.2' 
+    }
+}
