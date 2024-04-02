@@ -14,7 +14,7 @@ public class Batiment {
     
     // D'autres informations sur le bâtiment
     
-    @ElementCollection
+    @ElementCollection(fetch = FetchType.EAGER)
     @CollectionTable(name = "Autorisations_Acces")
     @MapKeyColumn(name = "type_utilisateur")
     @Column(name = "autorisation")
@@ -32,8 +32,8 @@ public class Batiment {
 		return nom;
 	}
 
-	public void setNom(String nom) {
-		this.nom = nom;
+	public void setNom(String nombat) {
+		this.nom = nombat;
 	}
 
 	public Map<String, Boolean> getAutorisationsAcces() {

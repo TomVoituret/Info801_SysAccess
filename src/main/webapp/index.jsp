@@ -6,21 +6,18 @@
 		<meta charset="ISO-8859-1">
 		<title>Système Batiment access</title>
 		
-		<script>
-
-	</script>
 	</head>
 	<body>
 	  <h2>Ajout des éléments : </h2>
 	  <ul>
 	    <li><a href="CreateUtilisateur.jsp">Creer un utilisateur</a></li>
-	    <li><a href="DeleteUtilisateur.jsp">Supprimer un utilisateur</a></li>
+	    <li><a href="GetUserDeleteServlet">Supprimer utilisateur</a></li>
 	    <li><a href="CreateBatiment.jsp">Creer un Batiment</a></li>
 	  </ul>
 	  <h2>Informations/test : </h2>
 	  <ul>
-	  	<li><a href="ShowAllTicketsServlet">tester le fonctionnement</a></li>
-	    <li><a href="ShowLastTicketServlet">Voir le tableau de bord</a></li>
+	  	<li><a href="GetInfosForTestServlet">tester le fonctionnement entrée</a></li>
+	    <li><a href="GetAllJourneauxDeBordServlet">Voir les tableaux de bord</a></li>
 	  </ul>
 	</body>
 </html>

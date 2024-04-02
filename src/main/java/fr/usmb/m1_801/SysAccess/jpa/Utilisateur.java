@@ -16,8 +16,19 @@ public class Utilisateur {
     private String prenom;
     private String type; // Enseignant, PersonnelAdministratif, Etudiant, etc.
     
+    public Utilisateur(Long id, String nom, String prenom, String type) {
+    	this.nom = nom;
+    	this.id = id;
+    	this.prenom = prenom;
+    	this.type = type;
+    }
     
     
+	public Utilisateur() {
+		// TODO Auto-generated constructor stub
+	}
+
+
 	public Long getId() {
 		return id;
 	}

@@ -1,8 +1,9 @@
 package fr.usmb.m1_801.SysAccess.ejb;
 
 import java.util.List;
+import java.util.Map;
 
-import fr.usmb.m1_801.SysAccess.jpa.Utilisateur;
+import fr.usmb.m1_801.SysAccess.jpa.Batiment;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
 import jakarta.ws.rs.Path;
@@ -10,8 +11,8 @@ import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.MediaType;
 
-@Path("utilisateur")
-public interface UtilisateurRest {
+@Path("batiment")
+public interface BatimentRest {
 
     @Path("add")
     @POST
@@ -24,26 +25,17 @@ public interface UtilisateurRest {
 	 * @param type   Le type de l'utilisateur.
 	 * @return L'utilisateur ajouté avec son ID généré.
 	 */
-	Utilisateur addUtilisateur(String nom, String prenom, String type);
+	Batiment addBatiment();
 
 	/**
 	 * Méthode pour récupérer tous les utilisateurs depuis la base de données.
 	 *
 	 * @return La liste de tous les utilisateurs.
 	 */
-	List<Utilisateur> getAllUtilisateurs();
+	List<Batiment> getAllBatiments();
 
-	Utilisateur deleteUtilisateur(Long id);
+	Batiment addBatiment(String nomBat, Map<String, Boolean> autorisationsAcces);
 
-	List<Long> getUtilisateurIdsInBat(Long idBat);
-
-	List<Utilisateur> getUtilisateursByIds(List<Long> ids);
-
-	List<Utilisateur> getUtilisateursExceptIds(List<Long> ids);
-
-	List<Long> getUtilisateurIdsInAllBat();
-
-	Utilisateur getUtilisateurById(Long id);
-
+	Batiment getBatimentById(Long id);
 
 }

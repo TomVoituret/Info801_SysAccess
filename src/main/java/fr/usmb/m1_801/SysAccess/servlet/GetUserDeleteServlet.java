@@ -1,29 +1,29 @@
 package fr.usmb.m1_801.SysAccess.servlet;
 
 import java.io.IOException;
-import java.util.Date;
+import java.util.ArrayList;
+import java.util.List;
 
+import fr.usmb.m1_801.SysAccess.ejb.UtilisateurEJB;
+import fr.usmb.m1_801.SysAccess.jpa.Utilisateur;
 import jakarta.ejb.EJB;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import fr.usmb.m1_801.SysAccess.ejb.TicketEJB;
-import fr.usmb.m1_801.SysAccess.jpa.Ticket;
 
-@WebServlet("/CreateTicketServlet")
-public class CreateTicketServlet extends HttpServlet {
+@WebServlet("/GetUserDeleteServlet")
+public class GetUserDeleteServlet extends HttpServlet {
     private static final long serialVersionUID = 1L;
 
-    // Injection de la référence de l'EJB TicketEJB
+    // Injection de la référence de l'EJB UtilisateurEJB
     @EJB
-    private TicketEJB ticketEJB;
-
+    private UtilisateurEJB utilisateurEJB;
     /**
      * Constructeur par défaut de la servlet.
      */
-    public CreateTicketServlet() {
+    public GetUserDeleteServlet() {
         super();
     }
 
@@ -32,19 +32,16 @@ public class CreateTicketServlet extends HttpServlet {
      */
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Appel de la méthode createTicket du TicketEJB pour créer un nouveau ticket
-        Ticket ticket = ticketEJB.createTicket();
+        // Récupérer tous les utilisateurs depuis l'EJB
+        List<Utilisateur> utilisateurs = utilisateurEJB.getAllUtilisateurs();
 
-        // Configuration de l'attribut de requête pour transmettre le ticket à la vue
-        request.setAttribute("ticket", ticket);
+        // Définir les utilisateurs comme attribut de requête pour la JSP
+        request.setAttribute("utilisateurs", utilisateurs);
 
-        // Transfert à la JSP d'affichage (showTicket.jsp)
-        request.getRequestDispatcher("/showTicket.jsp").forward(request, response);
+        // Transférer le contrôle à la JSP pour l'affichage des utilisateurs
+        request.getRequestDispatcher("/DeleteUtilisateur.jsp").forward(request, response);
     }
-
-    /**
-     * Méthode gérant les requêtes HTTP POST (déleguée vers la méthode doGet).
-     */
+    
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         doGet(request, response);
